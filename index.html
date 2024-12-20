@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de Minecraft</title>
+    <style>
+        body {
+            background-image: url('Minecraft Principal.WEBP');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: black;
+        }
+
+        .jalados {
+            text-align: right;
+            background-color: blueviolet;
+        }
+
+        .aprobados {
+            background-color: chocolate;
+            text-transform: capitalize;
+            background-image: url();
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            color: black;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #45a049;
+        }
+
+        .clickable-image {
+            cursor: pointer;
+            width: 555px;
+            margin: 10px;
+        }
+
+        footer {
+            background-color: chartreuse;
+            color: blue;
+            text-align: center;
+            padding: 20px 0;
+            bottom: 0;
+        }
+
+        .course-list {
+            text-align: left;
+            margin-left: 40px;
+            font-size: 18px;
+        }
+
+        .image-title {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="Ventas">Bienvenidos al reinicio de tu vida</h1>
+    <h2>Parece que necesitas ayuda</h2>
+    
+    <p>¡Listo para mostrar de qué eres capaz!</p>
+
+    <div class="course-list">
+        <h3>Curso de Minecraft:</h3>
+        <ul>
+            <li>Necesitas saber cómo usar las habilidades</li>
+            <li>Cómo armarte los items correctos</li>
+            <li>Tener en cuenta qué puedes hacer en cada rol</li>
+        </ul>
+    </div>
+
+    <div>
+        <p class="image-title" id="imageTitle1">Fácil</p>
+        <img src="MInecraft.avif" alt="Minecraft 1" class="clickable-image" onclick="openModal('Básico', 9.99, 'compras.html')">
+    </div>
+
+    <div>
+        <p class="image-title" id="imageTitle2">Intermedio</p>
+        <img src="Minecraft 2.jpg" alt="Minecraft 2" class="clickable-image" onclick="openModal('Intermedio', 29.99, 'compras1.html')">
+    </div>
+
+    <div>
+        <p class="image-title" id="imageTitle3">Experto</p>
+        <img src="Minecraft 3.jpg" alt="Minecraft 3" class="clickable-image" onclick="openModal('Experto', 49.99, 'compras2.html')">
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">¿Agregar al carrito?</h3>
+            <p id="modalPrice" class="price"></p>
+            <button onclick="addToCart()">Agregar al carrito</button>
+            <button onclick="closeModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>¡Listo para tu nueva aventura!</p>
+    </footer>
+
+    <script>
+        let redirectTo = '';
+
+        function openModal(title, price, redirectPage) {
+
+            document.getElementById("myModal").style.display = "block";
+            document.getElementById("modalTitle").innerText = "¿Agregar al carrito? (" + title + ")";
+            
+            document.getElementById("modalPrice").innerText = "Precio: $" + price.toFixed(2);
+            
+            redirectTo = redirectPage;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function addToCart() {
+
+            window.location.href = redirectTo;
+        }
+    </script>
+
+</body>
+</html>

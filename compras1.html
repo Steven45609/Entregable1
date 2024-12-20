@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras - Método de Pago</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .payment-option {
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 200px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .payment-option img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .payment-option:hover {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .payment-option input {
+            width: 20px;
+            height: 20px;
+        }
+
+        #payment-button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: not-allowed;
+            border-radius: 5px;
+        }
+
+        #payment-button.enabled {
+            cursor: pointer;
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Compras - Método de pago</h1>
+    
+    <div class="payment-options">
+        <div class="payment-option">
+            <img src="visa-icon.jpg" alt="Visa">
+            <input type="radio" id="visa" name="payment" value="Visa" onclick="enableButton()">
+            <label for="visa">Visa</label>
+        </div>
+        <div class="payment-option">
+            <img src="paypal-icon.jpg" alt="PayPal">
+            <input type="radio" id="paypal" name="payment" value="PayPal" onclick="enableButton()">
+            <label for="paypal">PayPal</label>
+        </div>
+        <div class="payment-option">
+            <img src="credit-card-icon.jpg" alt="Tarjeta de crédito">
+            <input type="radio" id="Tarjeta de crédito" name="payment" value="Tarjeta de crédito" onclick="enableButton()">
+            <label for="Tarjeta de crédito">Tarjeta de crédito</label>
+        </div>
+    </div>
+
+    <button id="payment-button" disabled onclick="redirectToPayment()">Realizar pago</button>
+
+    <script>
+        function enableButton() {
+            const button = document.getElementById("payment-button");
+            button.disabled = false;
+            button.classList.add("enabled");
+        }
+
+        function redirectToPayment() {
+            window.location.href = "pagocarrito1.html";
+        }
+    </script>
+
+</body>
+</html>

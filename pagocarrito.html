@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .payment-form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: not-allowed;
+            border-radius: 5px;
+        }
+
+        button.enabled {
+            cursor: pointer;
+            background-color: #45a049;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulario de Pago</h1>
+
+    <div class="payment-form">
+        <h3>Detalles de la cuenta de pago</h3>
+        <div class="form-group">
+            <label for="account">Correo electrónico de cuenta</label>
+            <input type="email" id="account" placeholder="Correo electrónico" required>
+        </div>
+
+        <div class="form-group">
+            <label for="card-number">Número de Tarjeta</label>
+            <input type="text" id="card-number" placeholder="Número de tarjeta" required>
+        </div>
+
+        <div class="form-group">
+            <label for="exp-date">Fecha de vencimiento</label>
+            <input type="month" id="exp-date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="CVV" required>
+        </div>
+
+        <button id="complete-purchase" disabled>Completar compra</button>
+    </div>
+
+    <script>
+        const accountField = document.getElementById("account");
+        const cardNumberField = document.getElementById("card-number");
+        const expDateField = document.getElementById("exp-date");
+        const cvvField = document.getElementById("cvv");
+        const purchaseButton = document.getElementById("complete-purchase");
+
+        const selectedCourse = "basico";
+
+        function checkFormCompletion() {
+            const isFormValid = 
+                accountField.value.trim() !== "" &&
+                cardNumberField.value.trim() !== "" &&
+                expDateField.value.trim() !== "" &&
+                cvvField.value.trim() !== "" &&
+                validateCardNumber(cardNumberField.value) &&
+                validateCVV(cvvField.value);
+
+            if (isFormValid) {
+                purchaseButton.disabled = false;
+                purchaseButton.classList.add("enabled");
+            } else {
+                purchaseButton.disabled = true;
+                purchaseButton.classList.remove("enabled");
+            }
+        }
+
+        function validateCardNumber(cardNumber) {
+            const cardPattern = /^[0-9]{13,19}$/;
+            return cardPattern.test(cardNumber);
+        }
+
+        function validateCVV(cvv) {
+            const cvvPattern = /^[0-9]{3,4}$/;
+            return cvvPattern.test(cvv);
+        }
+
+        purchaseButton.addEventListener("click", function() {
+
+            window.location.href = `confirmacion.html?course=${selectedCourse}`;
+        });
+
+        accountField.addEventListener("input", checkFormCompletion);
+        cardNumberField.addEventListener("input", checkFormCompletion);
+        expDateField.addEventListener("input", checkFormCompletion);
+        cvvField.addEventListener("input", checkFormCompletion);
+    </script>
+
+</body>
+</html>
